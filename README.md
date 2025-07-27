@@ -2,7 +2,7 @@
 
 Here are a couple of scripts for Ultra Mobile PCs (UMPC) such as the
 [GPD Pocket](https://gpd.hk/gpdpocket), [GPD Pocket 2](https://gpd.hk/gpdpocket2),
-[GPD Pocket 3](https://gpd.hk/gpdpocket3), [GPD MicroPC](https://gpd.hk/gpdmicropc),
+[GPD Pocket 3](https://gpd.hk/gpdpocket3),[GPD Pocket 4](https://gpd.hk/gpdpocket4), [GPD MicroPC](https://gpd.hk/gpdmicropc),
 [GPD WIN 2](https://gpd.hk/gdpwin2), [GPD P2 Max](https://www.gpd.hk/gpdp2max),
 [GPD WIN Max](https://gpd.hk/gpdwinmax) and [Topjoy Falcon](https://www.kickstarter.com/projects/440069565/falcon-worlds-first-8-inch-2-in-1-laptop)
 for Ubuntu users.
@@ -26,6 +26,7 @@ The Ubuntu MATE team offers bespoke images for the
 [GPD Pocket](https://gpd.hk/gpdpocket),
 [GPD Pocket 2](https://gpd.hk/gpdpocket2),
 [GPD Pocket 3](https://gpd.hk/gpdpocket3),
+[GPD Pocket 4](https://gpd.hk/gpdpocket4),
 [GPD WIN 2](https://gpd.hk/gdpwin2),
 [GPD MicroPC](https://gpd.hk/gpdmicropc),
 [GPD P2 Max](https://www.gpd.hk/gpdp2max),
@@ -47,7 +48,7 @@ The [Ubuntu MATE images for the UMPCs](https://ubuntu-mate.org/umpcs/) add the f
   * Enable touch screen rotation for Xorg and Wayland.
   * Enable **scroll wheel emulation** for Xorg.
     * While holding down the **right track point button** on the Pocket, Pocket 2 & Topjoy Falcon.
-    * While holding down the **centre track point button** on the MicroPC & Pocket 3.
+    * While holding down the **centre track point button** on the MicroPC & Pocket 3 & Pocket 4.
   * Enable double size console (tty) font resolution for high resolution devices.
   * Enable **fractional scaling** for 1920x1200 displays. *(MATE Desktop only)*
     * Results in an effective resolution of 1280x800 to make the display panels easily readable.
@@ -55,7 +56,7 @@ The [Ubuntu MATE images for the UMPCs](https://ubuntu-mate.org/umpcs/) add the f
   * GPD Pocket:
     * BRMC4356 WiFi firmware enabled by default.
     * Fan control kernel module enabled by default.
-  * GPD Pocket 3 & TopJoy Falcon:
+  * GPD Pocket 3 and 4 & TopJoy Falcon:
     * **Accelerometer support for automatic screen rotation**.
   * GPD WIN Max:
     *  Features a custom, persistent, EDID.
@@ -142,6 +143,7 @@ Switch the device on, immediately hold/tap the corresponding key(s).
 | GPD Pocket       |    `Del`     | `Fn` + `F7`  |
 | GPD Pocket 2     | `Fn` + `F12` | `Fn` + `F12` |
 | GPD Pocket 3     | `Fn` + `F7`  | `Fn` + `F7`  |
+| GPD Pocket 4     | `Fn` + `F7`  | `Fn` + `F7`  |
 | GPD WIN 2(!)     |    `Del`     |    `Del`     |
 | GPD WIN 3(!)     |    `Del`     |    `Del`     |
 | GPD MicroPC      |    `Del`     | `Fn` + `F7`  |
@@ -166,6 +168,7 @@ xinput
 | GPD Pocket       | DSI-1 / DSI1 | 1200x1920  | Right    | SINO WEALTH Gaming Keyboard               | Goodix Capacitive TouchScreen | >= 4.14    | >= 18.04.2 | gpd-pocket    |
 | GPD Pocket 2     | eDP-1 / eDP1 | 1200x1920  | Right    | HAILUCK CO.,LTD USB KEYBOARD Mouse        | Goodix Capacitive TouchScreen | >= 4.18    | >= 18.04.2 | gpd-pocket2   |
 | GPD Pocket 3     | DSI-1 / DSI1 | 1200x1920  | Right    | HAILUCK CO.,LTD USB KEYBOARD Mouse        | GXTP7380:00 27C6:0113         | >= 5.15    | >= 22.04   | gpd-pocket3   |
+| GPD Pocket 4     | eDP-1        | 1464x915   | Right  | n/a | n/a                         | n/a     | n/a     | gpd-pocket4   |
 | GPD WIN 2        | eDP-1 / eDP1 | 720x1280   | Right    | HK-ZYYK-US-A1-02-00 USB Keyboard Mouse    | Goodix Capacitive TouchScreen | >= 4.18    | >= 19.04   | gpd-win2      |
 | GPD WIN 3        | DSI-1 / DSI1 | 720x1280   | Right    |                                           | Goodix Capacitive TouchScreen | >= 5.15    | >= 22.04   | gpd-win3      |
 | GPD MicroPC      | DSI-1 / DSI1 | 720x1280   | Right    | AMR-4630-XXX-0- 0-1023 USB KEYBOARD Mouse | n/a                           | >= 5.2     | >= 19.10   | gpd-micropc   |
