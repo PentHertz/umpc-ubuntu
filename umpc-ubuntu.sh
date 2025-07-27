@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Set to either "gpd-pocket", "gpd-pocket2", "gpd-pocket3", "gpd-p2-max", "gpd-micropc", "gpd-win2", "gpd-win-max" or "topjoy-falcon"
-UMPC="gpd-pocket3"
+# Set to either "gpd-pocket", "gpd-pocket2", "gpd-pocket3", "gpd-pocket4", "gpd-p2-max", "gpd-micropc", "gpd-win2", "gpd-win-max" or "topjoy-falcon"
+UMPC="gpd-pocket4"
 XORG_CONF_PATH="/usr/share/X11/xorg.conf.d"
 INTEL_CONF="${XORG_CONF_PATH}/20-${UMPC}-intel.conf"
 MODPROBE_CONF="/etc/modprobe.d/alsa-${UMPC}.conf"
@@ -213,7 +213,7 @@ if [ -z "${UMPC}" ]; then
 fi
 
 case "${UMPC}" in
-  gpd-pocket|gpd-pocket2|gpd-pocket3|gpd-micropc|gpd-p2-max|gpd-win2|gpd-win-max|topjoy-falcon) true;;
+  gpd-pocket|gpd-pocket2|gpd-pocket3|gpd-pocket4|gpd-micropc|gpd-p2-max|gpd-win2|gpd-win-max|topjoy-falcon) true;;
   *) echo "ERROR! Unknown device name given."
      usage;;
 esac

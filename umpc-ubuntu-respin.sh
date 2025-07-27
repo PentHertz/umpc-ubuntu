@@ -10,7 +10,7 @@ function usage() {
     echo
     echo "OPTIONS"
     echo "    -d"
-    echo "        device modifications to apply to the iso image, can be 'gpd-pocket', 'gpd-pocket2', 'gpd-pocket3', 'gpd-micropc', 'gpd-p2-max', 'gpd-win2', 'gpd-win3', 'gpd-win-max' or 'topjoy-falcon'"
+    echo "        device modifications to apply to the iso image, can be 'gpd-pocket', 'gpd-pocket2', 'gpd-pocket3', 'gpd-pocket4', 'gpd-micropc', 'gpd-p2-max', 'gpd-win2', 'gpd-win3', 'gpd-win-max' or 'topjoy-falcon'"
     echo
     echo "    -h"
     echo "        display this help and exit"
@@ -85,7 +85,7 @@ if [ -z "${UMPC}" ]; then
 fi
 
 case "${UMPC}" in
-  gpd-pocket|gpd-pocket2|gpd-pocket3|gpd-micropc|gpd-p2-max|gpd-win2|gpd-win3|gpd-win-max|topjoy-falcon) true;;
+  gpd-pocket|gpd-pocket2|gpd-pocket3|gpd-pocket4|gpd-micropc|gpd-p2-max|gpd-win2|gpd-win3|gpd-win-max|topjoy-falcon) true;;
   *) echo "ERROR! Unknown device name given."
      usage;;
 esac
@@ -188,6 +188,14 @@ case "${UMPC}" in
         ;;
     esac
     ;;
+  gpd-pocket4)
+    case ${VERSION} in
+      20*|21.04)
+        echo "ERROR! GPD Pocket 4 is only supported by Ubuntu 21.10 and newer."
+        exit 1
+        ;;
+    esac
+    ;;
   gpd-win-max)
     case ${VERSION} in
       22.04*)
@@ -263,6 +271,30 @@ case ${UMPC} in
     #  - Patches are being worked on, more info here:
     #    https://ubuntu-mate.community/t/gpd-pocket-3-s3-sleep-waiting-for-kernel-fix/25053/
     sed -i 's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up mem_sleep_default=s2idle/' "${GRUB_DEFAULT_CONF}"
+    sed -i 's/quiet splash/fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up mem_sleep_default=s2idle fsck.mode=skip quiet splash/g' "${GRUB_BOOT_CONF}"
+    sed -i 's/quiet splash/fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up mem_sleep_default=s2idle fsck.mode=skip quiet splash/g' "${GRUB_LOOPBACK_CONF}"
+
+    # Increase console font size
+    sed -i 's/FONTSIZE="8x16"/FONTSIZE="16x32"/' "${CONSOLE_CONF}"
+
+    # Add automatic screen rotation
+    gcc -O2 "data/umpc-display-rotate.c" -o "${SQUASH_OUT}/usr/bin/umpc-display-rotate" -lm
+    inject_data "${SQUASH_OUT}/etc/xdg/autostart/umpc-display-rotate.desktop"
+    inject_data "${HWDB_CONF}"
+
+    # Display scaler
+    inject_data "${SQUASH_OUT}/usr/bin/umpc-display-scaler"
+    inject_data "${SQUASH_OUT}/etc/xdg/autostart/umpc-display-scaler.desktop"
+    inject_data "${SQUASH_OUT}/usr/share/applications/umpc-display-scaler.desktop"
+    ;;
+  gpd-pocket4)
+    # Frame buffer rotation and s2idle by default.
+    # s2idle is a temporary workaround
+    #  - Otherwise the screen will not turn back on after blanking if the system is busy.
+    #  - This issue also affects suspend feature.
+    #  - Patches are being worked on, more info here:
+    #    https://ubuntu-mate.community/t/gpd-pocket-3-s3-sleep-waiting-for-kernel-fix/25053/
+    sed -i 's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="fbcon=rotate:1 video=eDP-1:panel_orientation=right_side_up mem_sleep_default=s2idle/' "${GRUB_DEFAULT_CONF}"
     sed -i 's/quiet splash/fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up mem_sleep_default=s2idle fsck.mode=skip quiet splash/g' "${GRUB_BOOT_CONF}"
     sed -i 's/quiet splash/fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up mem_sleep_default=s2idle fsck.mode=skip quiet splash/g' "${GRUB_LOOPBACK_CONF}"
 
